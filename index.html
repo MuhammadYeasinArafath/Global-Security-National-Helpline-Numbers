@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Global Security & Helpline Numbers</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", Arial, sans-serif;
+        background-color: var(--bg-color, #000);
+        color: var(--text-color, #fff);
+        line-height: 1.6;
+        padding: 20px;
+        transition: background-color 0.3s, color 0.3s;
+      }
+
+      header {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      header h1 {
+        font-size: 2.5rem;
+        font-weight: bold;
+      }
+
+      header p {
+        font-size: 1rem;
+        color: #aaa;
+      }
+
+      .controls {
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .controls input {
+        padding: 10px;
+        font-size: 1rem;
+        border-radius: 5px;
+        border: 1px solid #333;
+        width: 60%;
+      }
+
+      .controls button {
+        padding: 10px 20px;
+        font-size: 1rem;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        background-color: #333;
+        color: #fff;
+        transition: background-color 0.3s;
+      }
+
+      .controls button:hover {
+        background-color: #444;
+      }
+
+      .country-container {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .country {
+        background-color: #111;
+        padding: 15px;
+        border-radius: 10px;
+        border: 1px solid #4f4e4e;
+        transition: transform 0.2s;
+      }
+
+      .country:hover {
+        transform: scale(1.02);
+      }
+
+      .country h2 {
+        font-size: 1.2rem;
+        margin-bottom: 8px;
+      }
+
+      .country img {
+        width: 100%;
+        max-height: 150px;
+        object-fit: contain;
+        margin-bottom: 10px;
+        border-radius: 5px;
+      }
+
+      .country p {
+        font-size: 0.9rem;
+        color: #aaa;
+      }
+
+      footer {
+        text-align: center;
+        margin-top: 30px;
+      }
+
+      footer p {
+        font-size: 0.9rem;
+        color: #666;
+      }
+
+      @media (min-width: 768px) {
+        .country-container {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+          gap: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Global Security & National Helpline Numbers</h1>
+      <p>Quick access to emergency contacts for all 195 countries</p>
+    </header>
+
+    <div class="controls">
+      <input type="text" id="search" placeholder="Search for a country..." />
+      <button id="theme-toggle">Toggle Theme</button>
+    </div>
+
+    <main>
+      <div class="country-container" id="country-container">
+        <!-- Countries will be populated dynamically here -->
+      </div>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 Global Helpline Directory. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+      const countryContainer = document.getElementById("country-container");
+      const searchInput = document.getElementById("search");
+      const themeToggle = document.getElementById("theme-toggle");
+
+      const helplineNumbers = {
+        Afghanistan: { police: "119", fire: "112", ambulance: "102" },
+        Albania: { police: "129", fire: "128", ambulance: "127" },
+        Algeria: { police: "17", fire: "14", ambulance: "10" },
+        Andorra: { police: "110", fire: "118", ambulance: "116" },
+        Angola: { police: "113", fire: "115", ambulance: "116" },
+        Argentina: { police: "911", fire: "100", ambulance: "107" },
+        Armenia: { police: "102", fire: "101", ambulance: "103" },
+        Australia: { police: "000", fire: "000", ambulance: "000" },
+        Austria: { police: "133", fire: "122", ambulance: "144" },
+        Azerbaijan: { police: "102", fire: "101", ambulance: "103" },
+        Bahamas: { police: "919", fire: "919", ambulance: "919" },
+        Bahrain: { police: "999", fire: "998", ambulance: "997" },
+        Bangladesh: { police: "999", fire: "199", ambulance: "199" },
+        Barbados: { police: "211", fire: "311", ambulance: "511" },
+        Belarus: { police: "102", fire: "101", ambulance: "103" },
+        Belgium: { police: "101", fire: "112", ambulance: "112" },
+        Belize: { police: "911", fire: "911", ambulance: "911" },
+        Benin: { police: "117", fire: "118", ambulance: "112" },
+        Bhutan: { police: "113", fire: "110", ambulance: "112" },
+        Bolivia: { police: "110", fire: "119", ambulance: "118" },
+        "Bosnia and Herzegovina": { police: "122", fire: "123", ambulance: "124" },
+        Botswana: { police: "999", fire: "998", ambulance: "997" },
+        Brazil: { police: "190", fire: "193", ambulance: "192" },
+        Brunei: { police: "993", fire: "995", ambulance: "991" },
+        Bulgaria: { police: "112", fire: "112", ambulance: "112" },
+        "Burkina Faso": { police: "17", fire: "18", ambulance: "112" },
+        Burundi: { police: "112", fire: "117", ambulance: "118" },
+        "Cabo Verde": { police: "132", fire: "131", ambulance: "130" },
+        Cambodia: { police: "117", fire: "118", ambulance: "119" },
+        Cameroon: { police: "117", fire: "118", ambulance: "112" },
+        Canada: { police: "911", fire: "911", ambulance: "911" },
+        "Central African Republic": { police: "117", fire: "118", ambulance: "122" },
+        Chad: { police: "17", fire: "18", ambulance: "19" },
+        Chile: { police: "133", fire: "132", ambulance: "131" },
+        China: { police: "110", fire: "119", ambulance: "120" },
+        Colombia: { police: "123", fire: "119", ambulance: "125" },
+        Comoros: { police: "17", fire: "18", ambulance: "19" },
+        "Congo (Congo-Brazzaville)": { police: "117", fire: "118", ambulance: "112" },
+        "Costa Rica": { police: "911", fire: "911", ambulance: "911" },
+        Croatia: { police: "192", fire: "193", ambulance: "194" },
+        Cuba: { police: "106", fire: "105", ambulance: "104" },
+        Cyprus: { police: "112", fire: "112", ambulance: "112" },
+        "Czechia (Czech Republic)": { police: "158", fire: "150", ambulance: "155" },
+        Denmark: { police: "112", fire: "112", ambulance: "112" },
+        Djibouti: { police: "17", fire: "18", ambulance: "19" },
+        Dominica: { police: "999", fire: "999", ambulance: "999" },
+        "Dominican Republic": { police: "911", fire: "911", ambulance: "911" },
+        Ecuador: { police: "911", fire: "911", ambulance: "911" },
+        Egypt: { police: "122", fire: "180", ambulance: "123" },
+        "El Salvador": { police: "911", fire: "913", ambulance: "132" },
+        "Equatorial Guinea": { police: "112", fire: "112", ambulance: "112" },
+        Eritrea: { police: "113", fire: "114", ambulance: "115" },
+        Estonia: { police: "112", fire: "112", ambulance: "112" },
+        Eswatini: { police: "999", fire: "933", ambulance: "977" },
+        Ethiopia: { police: "991", fire: "939", ambulance: "907" },
+        Fiji: { police: "917", fire: "911", ambulance: "911" },
+        Finland: { police: "112", fire: "112", ambulance: "112" },
+        France: { police: "17", fire: "18", ambulance: "15" },
+        Gabon: { police: "1730", fire: "1300", ambulance: "1877" },
+        Gambia: { police: "117", fire: "118", ambulance: "119" },
+        Georgia: { police: "112", fire: "112", ambulance: "112" },
+        Germany: { police: "110", fire: "112", ambulance: "112" },
+        Ghana: { police: "191", fire: "192", ambulance: "193" },
+        Greece: { police: "100", fire: "199", ambulance: "166" },
+        Grenada: { police: "911", fire: "911", ambulance: "911" },
+        Guatemala: { police: "110", fire: "122", ambulance: "123" },
+        Guinea: { police: "117", fire: "118", ambulance: "4420" },
+        "Guinea-Bissau": { police: "117", fire: "118", ambulance: "119" },
+        Guyana: { police: "911", fire: "912", ambulance: "913" },
+        Haiti: { police: "114", fire: "115", ambulance: "116" },
+        Honduras: { police: "911", fire: "911", ambulance: "911" },
+        Hungary: { police: "107", fire: "105", ambulance: "104" },
+        Iceland: { police: "112", fire: "112", ambulance: "112" },
+        India: { police: "100", fire: "101", ambulance: "102" },
+        Indonesia: { police: "110", fire: "113", ambulance: "118" },
+        Iran: { police: "110", fire: "125", ambulance: "115" },
+        Iraq: { police: "104", fire: "115", ambulance: "122" },
+        Ireland: { police: "999", fire: "999", ambulance: "999" },
+        Israel: { police: "100", fire: "102", ambulance: "101" },
+        Italy: { police: "112", fire: "115", ambulance: "118" },
+        Jamaica: { police: "119", fire: "110", ambulance: "110" },
+        Japan: { police: "110", fire: "119", ambulance: "119" },
+        Jordan: { police: "911", fire: "911", ambulance: "911" },
+        Kazakhstan: { police: "102", fire: "101", ambulance: "103" },
+        Kenya: { police: "999", fire: "999", ambulance: "999" },
+        Kiribati: { police: "999", fire: "993", ambulance: "994" },
+        Kuwait: { police: "112", fire: "112", ambulance: "112" },
+        Kyrgyzstan: { police: "102", fire: "101", ambulance: "103" },
+        Laos: { police: "191", fire: "190", ambulance: "195" },
+        Latvia: { police: "110", fire: "112", ambulance: "113" },
+        Lebanon: { police: "112", fire: "175", ambulance: "140" },
+        Lesotho: { police: "123", fire: "112", ambulance: "223" },
+        Liberia: { police: "911", fire: "911", ambulance: "911" },
+        Libya: { police: "1515", fire: "1515", ambulance: "1515" },
+        Liechtenstein: { police: "117", fire: "118", ambulance: "144" },
+        Lithuania: { police: "112", fire: "112", ambulance: "112" },
+        Luxembourg: { police: "113", fire: "112", ambulance: "112" },
+        Madagascar: { police: "117", fire: "118", ambulance: "124" },
+        Malawi: { police: "997", fire: "998", ambulance: "999" },
+        Malaysia: { police: "999", fire: "994", ambulance: "999" },
+        Maldives: { police: "119", fire: "118", ambulance: "102" },
+        Mali: { police: "17", fire: "18", ambulance: "112" },
+        Malta: { police: "112", fire: "112", ambulance: "112" },
+        "Marshall Islands": { police: "911", fire: "911", ambulance: "911" },
+        Mauritania: { police: "117", fire: "118", ambulance: "119" },
+        Mauritius: { police: "999", fire: "995", ambulance: "114" },
+        Mexico: { police: "911", fire: "911", ambulance: "911" },
+        Micronesia: { police: "911", fire: "911", ambulance: "911" },
+        Moldova: { police: "112", fire: "112", ambulance: "112" },
+        Monaco: { police: "112", fire: "112", ambulance: "112" },
+        Mongolia: { police: "102", fire: "101", ambulance: "103" },
+        Montenegro: { police: "122", fire: "123", ambulance: "124" },
+        Morocco: { police: "190", fire: "15", ambulance: "141" },
+        Mozambique: { police: "119", fire: "198", ambulance: "199" },
+        "Myanmar (Burma)": { police: "199", fire: "199", ambulance: "192" },
+        Namibia: { police: "10111", fire: "10111", ambulance: "211111" },
+        Nauru: { police: "110", fire: "111", ambulance: "112" },
+        Nepal: { police: "100", fire: "101", ambulance: "102" },
+        Netherlands: { police: "112", fire: "112", ambulance: "112" },
+        "New Zealand": { police: "111", fire: "111", ambulance: "111" },
+        Nicaragua: { police: "118", fire: "115", ambulance: "118" },
+        Niger: { police: "17", fire: "18", ambulance: "15" },
+        Nigeria: { police: "199", fire: "199", ambulance: "199" },
+        "North Korea": { police: "112", fire: "119", ambulance: "119" },
+        "North Macedonia": { police: "192", fire: "193", ambulance: "194" },
+        Norway: { police: "112", fire: "110", ambulance: "113" },
+        Oman: { police: "9999", fire: "9999", ambulance: "9999" },
+        Pakistan: { police: "15", fire: "16", ambulance: "115" },
+        Palau: { police: "911", fire: "911", ambulance: "911" },
+        Panama: { police: "104", fire: "103", ambulance: "911" },
+        "Papua New Guinea": { police: "000", fire: "000", ambulance: "000" },
+        Paraguay: { police: "911", fire: "131", ambulance: "141" },
+        Peru: { police: "105", fire: "116", ambulance: "117" },
+        Philippines: { police: "117", fire: "160", ambulance: "117" },
+        Poland: { police: "112", fire: "998", ambulance: "999" },
+        Portugal: { police: "112", fire: "112", ambulance: "112" },
+        Qatar: { police: "999", fire: "999", ambulance: "999" },
+        Romania: { police: "112", fire: "112", ambulance: "112" },
+        Russia: { police: "102", fire: "101", ambulance: "103" },
+        Rwanda: { police: "112", fire: "112", ambulance: "912" },
+        "Saint Kitts and Nevis": { police: "911", fire: "911", ambulance: "911" },
+        "Saint Lucia": { police: "911", fire: "911", ambulance: "911" },
+        "Saint Vincent and the Grenadines": { police: "999", fire: "999", ambulance: "999" },
+        Samoa: { police: "999", fire: "999", ambulance: "999" },
+        "San Marino": { police: "112", fire: "112", ambulance: "112" },
+        "Sao Tome and Principe": { police: "112", fire: "112", ambulance: "112" },
+        "Saudi Arabia": { police: "999", fire: "998", ambulance: "997" },
+        Senegal: { police: "17", fire: "18", ambulance: "15" },
+        Serbia: { police: "192", fire: "193", ambulance: "194" },
+        Seychelles: { police: "999", fire: "999", ambulance: "999" },
+        "Sierra Leone": { police: "999", fire: "999", ambulance: "999" },
+        Singapore: { police: "999", fire: "995", ambulance: "995" },
+        Slovakia: { police: "112", fire: "112", ambulance: "112" },
+        Slovenia: { police: "113", fire: "112", ambulance: "112" },
+        "Solomon Islands": { police: "999", fire: "999", ambulance: "999" },
+        Somalia: { police: "888", fire: "555", ambulance: "777" },
+        "South Africa": { police: "10111", fire: "10111", ambulance: "10177" },
+        "South Korea": { police: "112", fire: "119", ambulance: "119" },
+        "South Sudan": { police: "777", fire: "999", ambulance: "999" },
+        Spain: { police: "112", fire: "112", ambulance: "112" },
+        "Sri Lanka": { police: "119", fire: "110", ambulance: "1990" },
+        Sudan: { police: "999", fire: "998", ambulance: "997" },
+        Suriname: { police: "112", fire: "110", ambulance: "115" },
+        Sweden: { police: "112", fire: "112", ambulance: "112" },
+        Switzerland: { police: "117", fire: "118", ambulance: "144" },
+        Syria: { police: "112", fire: "113", ambulance: "110" },
+        Taiwan: { police: "110", fire: "119", ambulance: "119" },
+        Tajikistan: { police: "102", fire: "101", ambulance: "103" },
+        Tanzania: { police: "112", fire: "112", ambulance: "112" },
+        Thailand: { police: "191", fire: "199", ambulance: "1669" },
+        "Timor-Leste": { police: "112", fire: "112", ambulance: "112" },
+        Togo: { police: "117", fire: "118", ambulance: "8200" },
+        Tonga: { police: "911", fire: "911", ambulance: "911" },
+        "Trinidad and Tobago": { police: "999", fire: "990", ambulance: "811" },
+        Tunisia: { police: "197", fire: "198", ambulance: "190" },
+        Turkey: { police: "155", fire: "110", ambulance: "112" },
+        Turkmenistan: { police: "102", fire: "101", ambulance: "103" },
+        Tuvalu: { police: "911", fire: "911", ambulance: "911" },
+        Uganda: { police: "999", fire: "999", ambulance: "112" },
+        Ukraine: { police: "102", fire: "101", ambulance: "103" },
+        "United Arab Emirates": { police: "999", fire: "997", ambulance: "998" },
+        "United Kingdom": { police: "999", fire: "999", ambulance: "999" },
+        "United States": { police: "911", fire: "911", ambulance: "911" },
+        Uruguay: { police: "911", fire: "104", ambulance: "105" },
+        Uzbekistan: { police: "102", fire: "101", ambulance: "103" },
+        Vanuatu: { police: "112", fire: "112", ambulance: "112" },
+        "Vatican City": { police: "112", fire: "112", ambulance: "112" },
+        Venezuela: { police: "911", fire: "171", ambulance: "171" },
+        Vietnam: { police: "113", fire: "114", ambulance: "115" },
+        Yemen: { police: "199", fire: "191", ambulance: "191" },
+        Zambia: { police: "991", fire: "993", ambulance: "992" },
+        Zimbabwe: { police: "995", fire: "993", ambulance: "994" },
+        // Placeholder for all countries
+      };
+
+      async function fetchCountries() {
+        try {
+          const response = await fetch("https://restcountries.com/v3.1/all");
+          const countries = await response.json();
+
+          countries.forEach((country) => {
+            const name = country.name.common;
+            const flag = country.flags.svg;
+            const map = country.maps.googleMaps;
+
+            const helpline = helplineNumbers[name] || {
+              police: "N/A",
+              fire: "N/A",
+              ambulance: "N/A",
+            };
+
+            const countryCard = document.createElement("div");
+            countryCard.classList.add("country");
+
+            countryCard.innerHTML = `
+                        <img src="${flag}" alt="Flag of ${name}">
+                        <h2>${name}</h2>
+                        <p><strong>Police:</strong> ${helpline.police}</p>
+                        <p><strong>Fire Service:</strong> ${helpline.fire}</p>
+                        <p><strong>Ambulance:</strong> ${helpline.ambulance}</p>
+                        <p><a href="${map}" target="_blank" style="color: #1e90ff;">View Map</a></p>
+                    `;
+
+            countryContainer.appendChild(countryCard);
+          });
+        } catch (error) {
+          console.error("Error fetching countries:", error);
+        }
+      }
+
+      searchInput.addEventListener("input", () => {
+        const searchTerm = searchInput.value.toLowerCase();
+        const countries = document.querySelectorAll(".country");
+
+        countries.forEach((country) => {
+          const countryName = country
+            .querySelector("h2")
+            .textContent.toLowerCase();
+          country.style.display = countryName.includes(searchTerm)
+            ? ""
+            : "none";
+        });
+      });
+
+      themeToggle.addEventListener("click", () => {
+        const isDark =
+          getComputedStyle(document.body)
+            .getPropertyValue("--bg-color")
+            .trim() === "#000";
+
+        document.body.style.setProperty("--bg-color", isDark ? "#fff" : "#000");
+        document.body.style.setProperty(
+          "--text-color",
+          isDark ? "#000" : "#fff"
+        );
+      });
+
+      fetchCountries();
+    </script>
+  </body>
+</html>

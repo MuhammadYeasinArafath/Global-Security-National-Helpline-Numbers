@@ -12,7 +12,7 @@ This project is a comprehensive directory of emergency helpline numbers for all 
 - **Search Functionality**: Allows users to quickly find the emergency contacts for a specific country.
 - **Toggle Theme**: Users can switch between light and dark themes for better accessibility.
 
-## Live[(https://muhammadyeasinarafath.github.io/Global-Security-National-Helpline-Numbers)]
+##Live Demo: [Global Security & National Helpline Numbers](https://muhammadyeasinarafath.github.io/Global-Security-National-Helpline-Numbers)
 
 ## Technologies Used
 
